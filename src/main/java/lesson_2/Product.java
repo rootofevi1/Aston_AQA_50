@@ -1,7 +1,5 @@
 package lesson_2;
 
-import java.time.LocalDate;
-
 class Product {
     String productName;
     String productionDate;
