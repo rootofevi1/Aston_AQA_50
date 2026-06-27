@@ -1,4 +1,4 @@
-package lesson_7_junit_5;
+package lesson_7_testng;
 
 public class NumberComparator {
 
