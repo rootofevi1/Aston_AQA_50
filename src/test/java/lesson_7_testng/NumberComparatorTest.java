@@ -1,44 +1,46 @@
 package lesson_7_testng;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.assertEquals;
 
-class NumberComparatorTest {
+public class NumberComparatorTest {
 
-    @Test
-    @DisplayName("Сравнение: a > b")
-    void compareGreater() {
-        assertEquals(1, NumberComparator.compare(5, 3), "5 > 3");
-        assertEquals(1, NumberComparator.compare(0, -1), "0 > -1");
-        assertEquals(1, NumberComparator.compare(Integer.MAX_VALUE, 0), "MAX > 0");
+    @DataProvider(name = "comparisonData")
+    public Object[][] comparisonData() {
+        return new Object[][]{
+                // a > b
+                {5, 3, 1, "5 > 3"},
+                {0, -1, 1, "0 > -1"},
+                {Integer.MAX_VALUE, 0, 1, "MAX_VALUE > 0"},
+
+                // a < b
+                {3, 5, -1, "3 < 5"},
+                {-1, 0, -1, "-1 < 0"},
+                {0, Integer.MAX_VALUE, -1, "0 < MAX_VALUE"},
+
+                // a == b
+                {5, 5, 0, "5 == 5"},
+                {0, 0, 0, "0 == 0"},
+                {-5, -5, 0, "-5 == -5"},
+
+                // Граничные значения
+                {Integer.MAX_VALUE, Integer.MIN_VALUE, 1, "MAX_VALUE > MIN_VALUE"},
+                {Integer.MIN_VALUE, Integer.MAX_VALUE, -1, "MIN_VALUE < MAX_VALUE"},
+                {Integer.MAX_VALUE, Integer.MAX_VALUE, 0, "MAX_VALUE == MAX_VALUE"}
+        };
     }
 
-    @Test
-    @DisplayName("Сравнение: a < b")
-    void compareLess() {
-        assertEquals(-1, NumberComparator.compare(3, 5), "3 < 5");
-        assertEquals(-1, NumberComparator.compare(-1, 0), "-1 < 0");
-        assertEquals(-1, NumberComparator.compare(0, Integer.MAX_VALUE), "0 < MAX");
-    }
-
-    @Test
-    @DisplayName("Сравнение: a == b")
-    void compareEqual() {
-        assertEquals(0, NumberComparator.compare(5, 5), "5 == 5");
-        assertEquals(0, NumberComparator.compare(0, 0), "0 == 0");
-        assertEquals(0, NumberComparator.compare(-5, -5), "-5 == -5");
-    }
-
-    @Test
-    @DisplayName("Сравнение с граничными значениями")
-    void compareEdgeCases() {
-        assertEquals(1, NumberComparator.compare(Integer.MAX_VALUE, Integer.MIN_VALUE),
-                "MAX > MIN");
-        assertEquals(-1, NumberComparator.compare(Integer.MIN_VALUE, Integer.MAX_VALUE),
-                "MIN < MAX");
-        assertEquals(0, NumberComparator.compare(Integer.MAX_VALUE, Integer.MAX_VALUE),
-                "MAX == MAX");
+    @Test(
+            dataProvider = "comparisonData",
+            description = "Сравнение двух целых чисел"
+    )
+    public void compareNumbers(int a, int b, int expected, String message) {
+        assertEquals(
+                NumberComparator.compare(a, b),
+                expected,
+                message
+        );
     }
 }
