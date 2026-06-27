@@ -19,8 +19,6 @@ public class TriangleAreaCalculator {
         double s = (a + b + c) / 2.0;
 
         // Формула Герона: √(s(s-a)(s-b)(s-c))
-        double area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-
-        return area;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 }
