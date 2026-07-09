@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,35 +75,54 @@ public class MtsOnlinePaymentTest {
     @Test
     @DisplayName("Проверка логотипов платежных систем")
     void testPaymentLogos() {
-
         List<WebElement> logos = paymentPage.getPaymentLogos();
 
-        assertFalse(
-                logos.isEmpty(),
-                "Логотипы платежных систем отсутствуют."
+        // Проверяем, что логотипы есть
+        assertFalse(logos.isEmpty(), "Логотипы платежных систем отсутствуют.");
+
+        // Ожидаемые значения alt (в том порядке, как на странице)
+        List<String> expectedAltValues = Arrays.asList(
+                "Visa",
+                "Verified By Visa",
+                "MasterCard",
+                "MasterCard Secure Code",
+                "Белкарт"
         );
 
-        for (WebElement logo : logos) {
+        // Проверяем каждый логотип
+        for (int i = 0; i < logos.size(); i++) {
+            WebElement logo = logos.get(i);
 
-            assertTrue(
-                    logo.isDisplayed(),
-                    "Логотип не отображается."
-            );
+            // Проверяем, что логотип отображается
+            assertTrue(logo.isDisplayed(), "Логотип не отображается!");
 
-            String src = logo.getAttribute("src");
+            // Проверяем src
+            String src = logo.getDomAttribute("src");
+            assertNotNull(src, "У логотипа отсутствует атрибут src!");
+            assertFalse(src.isBlank(), "Атрибут src пустой!");
 
-            assertNotNull(src);
-            assertFalse(
-                    src.isBlank(),
-                    "У логотипа отсутствует атрибут src."
-            );
+            // Проверяем alt (уникальное значение)
+            String alt = logo.getDomAttribute("alt");
+            assertNotNull(alt, "У логотипа отсутствует атрибут alt!");
+            assertFalse(alt.isBlank(), "Атрибут alt пустой!");
+
+            // Проверяем, что alt совпадает с ожидаемым
+            if (i < expectedAltValues.size()) {
+                assertEquals(expectedAltValues.get(i), alt,
+                        "Логотип " + i + " имеет неверный alt! Ожидалось: " +
+                                expectedAltValues.get(i) + ", а получили: " + alt);
+            }
         }
+
+        // Проверяем, что количество логотипов совпадает с ожидаемым
+        assertEquals(expectedAltValues.size(), logos.size(),
+                "Количество логотипов не совпадает! Ожидалось: " +
+                        expectedAltValues.size() + ", а получили: " + logos.size());
     }
 
     @Test
     @DisplayName("Проверка ссылки 'Подробнее о сервисе'")
     void testMoreInfoLink() {
-
         paymentPage.clickMoreInfoLink();
 
         assertTrue(
@@ -114,18 +134,52 @@ public class MtsOnlinePaymentTest {
     @Test
     @DisplayName("Проверка работы кнопки 'Продолжить' для услуги связи")
     void testContinueButtonForCommunicationServices() {
-
         paymentPage.selectCommunicationServices();
-
         paymentPage.enterPhone("PHONE_NUMBER");
-
         paymentPage.enterAmount("AMOUNT");
-
         paymentPage.clickContinue();
 
         assertTrue(
                 paymentPage.isPaymentPageOpened(),
                 "Форма оплаты не открылась."
         );
+    }
+
+    @Test
+    @DisplayName("Проверка плейсхолдеров для услуги 'Услуги связи'")
+    void testConnectionServicePlaceholders() {
+        paymentPage.selectCommunicationServices();
+        paymentPage.verifyConnectionServicePlaceholders();
+    }
+
+    @Test
+    @DisplayName("Проверка плейсхолдеров для услуги 'Домашний интернет'")
+    void testInternetServicePlaceholders() {
+        paymentPage.selectInternetService();
+        paymentPage.verifyInternetServicePlaceholders();
+    }
+
+    @Test
+    @DisplayName("Проверка плейсхолдеров для услуги 'Рассрочка'")
+    void testInstalmentServicePlaceholders() {
+        paymentPage.selectInstalmentService();
+        paymentPage.verifyInstalmentServicePlaceholders();
+    }
+
+    @Test
+    @DisplayName("Проверка плейсхолдеров для услуги 'Задолженность'")
+    void testArrearsServicePlaceholders() {
+        paymentPage.selectArrearsService();
+        paymentPage.verifyArrearsServicePlaceholders();
+    }
+
+    @Test
+    @DisplayName("Проверка страницы оплаты после заполнения формы 'Услуги связи'")
+    void testPaymentPageAfterSubmit() {
+        paymentPage.selectCommunicationServices();
+        paymentPage.enterPhone(PHONE_NUMBER);
+        paymentPage.enterAmount(AMOUNT);
+        paymentPage.clickContinue();
+        paymentPage.verifyPaymentPageOpened("375" + PHONE_NUMBER, AMOUNT + ".00");
     }
 }
