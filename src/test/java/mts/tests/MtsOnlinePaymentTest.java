@@ -77,12 +77,18 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка заголовка блока 'Онлайн пополнение без комиссии'")
+    @Description("Проверка, что заголовок блока соответствует ожидаемому тексту")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Заголовок блока")
     void testBlockTitle() {
         paymentPage.verifyBlockTitle("Онлайн пополнение без комиссии");
     }
 
     @Test
     @DisplayName("Проверка логотипов платежных систем")
+    @Description("Проверка наличия, отображения и корректности alt логотипов платёжных систем: Visa, Verified By Visa, MasterCard, MasterCard Secure Code, Белкарт")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Логотипы платёжных систем")
     void testPaymentLogos() {
         List<WebElement> logos = paymentPage.getPaymentLogos();
 
@@ -131,6 +137,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка ссылки 'Подробнее о сервисе'")
+    @Description("Проверка, что ссылка 'Подробнее о сервисе' ведёт на страницу с информацией о платежах")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Ссылка 'Подробнее о сервисе'")
     void testMoreInfoLink() {
         paymentPage.clickMoreInfoLink();
 
@@ -142,6 +151,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка работы кнопки 'Продолжить' для услуги связи")
+    @Description("Проверка, что после заполнения формы и нажатия кнопки 'Продолжить' открывается форма оплаты")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Кнопка 'Продолжить'")
     void testContinueButtonForCommunicationServices() {
         paymentPage.selectCommunicationServices();
         paymentPage.enterPhone("PHONE_NUMBER");
