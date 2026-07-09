@@ -8,6 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,6 +22,8 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("MTS Онлайн пополнение")
+@Feature("Проверка плейсхолдеров")
 public class MtsOnlinePaymentTest {
 
     private static final String BASE_URL = "https://mts.by";
@@ -147,6 +156,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка плейсхолдеров для услуги 'Услуги связи'")
+    @Description("Проверка плейсхолдеров в полях: Номер телефона, Сумма, E-mail")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Услуги связи")
     void testConnectionServicePlaceholders() {
         paymentPage.selectCommunicationServices();
         paymentPage.verifyConnectionServicePlaceholders();
@@ -154,6 +166,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка плейсхолдеров для услуги 'Домашний интернет'")
+    @Description("Проверка плейсхолдеров в полях: Номер абонента, Сумма, E-mail")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Домашний интернет")
     void testInternetServicePlaceholders() {
         paymentPage.selectInternetService();
         paymentPage.verifyInternetServicePlaceholders();
@@ -161,6 +176,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка плейсхолдеров для услуги 'Рассрочка'")
+    @Description("Проверка плейсхолдеров в полях: Номер счета на 44, Сумма, E-mail")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Рассрочка")
     void testInstalmentServicePlaceholders() {
         paymentPage.selectInstalmentService();
         paymentPage.verifyInstalmentServicePlaceholders();
@@ -168,6 +186,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка плейсхолдеров для услуги 'Задолженность'")
+    @Description("Проверка плейсхолдеров в полях: Номер счета на 2073, Сумма, E-mail")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Задолженность")
     void testArrearsServicePlaceholders() {
         paymentPage.selectArrearsService();
         paymentPage.verifyArrearsServicePlaceholders();
@@ -175,6 +196,9 @@ public class MtsOnlinePaymentTest {
 
     @Test
     @DisplayName("Проверка страницы оплаты после заполнения формы 'Услуги связи'")
+    @Description("Проверка: суммы на кнопке, номера телефона, надписей в полях карты, иконок")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Оплата услуги связи")
     void testPaymentPageAfterSubmit() {
         paymentPage.selectCommunicationServices();
         paymentPage.enterPhone(PHONE_NUMBER);
