@@ -1,4 +1,4 @@
-# Александр — учебные проекты AQA / Aston
+# Учебные проекты AQA / Aston
 
 Java test automation coursework: unit tests, REST API checks and Selenium UI tests with Allure reporting.
 
@@ -26,7 +26,7 @@ Java test automation coursework: unit tests, REST API checks and Selenium UI tes
 | [Lesson_10](https://github.com/rootofevi1/Aston_AQA_50/tree/Lesson_10) | UI-тесты MTS: расширение покрытия |
 | [Lesson_11](https://github.com/rootofevi1/Aston_AQA_50/tree/Lesson_11) | UI-тесты MTS: Allure |
 
-Ветка `Lesson_6` в репозитории отсутствует. `main` служит оглавлением; для запуска выберите нужную учебную ветку.
+`main` служит оглавлением; для запуска выберите нужную учебную ветку.
 
 ## Развитие UI-проекта
 
@@ -49,7 +49,7 @@ Windows PowerShell: `.\gradlew.bat test`. HTML-отчёт: `build/reports/tests/
 
 ## Проверка качества
 
-[GitHub Actions](https://github.com/rootofevi1/Aston_AQA_50/actions/workflows/verify.yml) компилирует все учебные ветки и запускает модульные тесты JUnit 5/TestNG. Внешние API и платёжный сайт не запускаются автоматически: их состояние и разметка могут изменяться. Зелёная сборка не означает успешного выполнения внешних UI/API-сценариев.
+[GitHub Actions](https://github.com/rootofevi1/Aston_AQA_50/actions/workflows/verify.yml) компилирует все учебные ветки и запускает модульные тесты JUnit 5/TestNG. Внешние API и платёжный сайт не запускаются автоматически: их состояние и разметка могут изменяться.
 
 Результаты модульных тестов сохраняются артефактами workflow. Код для UI-тестов не вводит данные карты и не выполняет платёж.
 
