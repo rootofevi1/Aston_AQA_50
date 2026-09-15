@@ -4,7 +4,7 @@ TestNG tests for the calculator domain, with data providers.
 
 Альтернативная реализация тестов арифметики, факториала, сравнения чисел и площади треугольника. Используются @Test, DataProvider и ожидаемые исключения.
 
-Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
+Часть учебного портфолио, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
 ## Стек и структура
 
