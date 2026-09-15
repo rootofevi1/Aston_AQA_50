@@ -4,7 +4,7 @@ REST Assured tests for HTTP request and response behavior using Postman Echo.
 
 GET, POST, PUT, PATCH и DELETE: статус, Content-Type, параметры, заголовки, текстовое и JSON-тело ответа. DTO EchoResponse используется для десериализации.
 
-Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
+Часть учебного портфолио, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
 ## Стек и структура
 
