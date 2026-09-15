@@ -1,0 +1,37 @@
+name: Compile lessons and run unit tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [Lesson_1, Lesson_2, Lesson_3, Lesson_4, Lesson_5, Lesson_7_junit_5, Lesson_7_testng, Lesson_8, Lesson_9, Lesson_10, Lesson_11]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile
+        run: bash ./gradlew --no-daemon classes testClasses
+      - name: Unit tests
+        if: startsWith(matrix.branch, 'Lesson_7')
+        run: bash ./gradlew --no-daemon test
+      - uses: actions/upload-artifact@v4
+        if: always() && startsWith(matrix.branch, 'Lesson_7')
+        with:
+          name: unit-tests-${{ matrix.branch }}
+          path: |
+            build/reports/tests/
+            build/test-results/
+
