@@ -1,54 +1,39 @@
-# Postman Echo API Tests
+# API-тесты Postman Echo
 
-Автотесты для проверки API https://postman-echo.com
+REST Assured tests for HTTP request and response behavior using Postman Echo.
 
-## Стек технологий
-- Java 11
-- RestAssured 5.4.0
-- JUnit 5
-- Gradle (Kotlin DSL)
-- Jackson 2.16.2
-- AssertJ 3.25.3
+GET, POST, PUT, PATCH и DELETE: статус, Content-Type, параметры, заголовки, текстовое и JSON-тело ответа. DTO EchoResponse используется для десериализации.
 
-## Структура тестов
+Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
-### GET-запросы (/get)
-- ✅ Позитивный: GET с двумя параметрами
-- ✅ Негативный: GET без параметров
-- ✅ Негативный: GET с одним параметром
-- ✅ Негативный: GET с пустыми значениями
+## Стек и структура
 
-### POST-запросы (/post)
-**Raw Text (JSON):**
-- ✅ Позитивный: POST с JSON в теле
-- ✅ Негативный: POST с пустым телом
-- ✅ Негативный: POST с невалидным JSON
-- ✅ Негативный: POST с числом вместо объекта
+Java 11 (source/target), REST Assured 5.4.0, JUnit 5.10.2, Jackson, AssertJ, Lombok, Gradle.
 
-### PUT-запросы (/put)
-- ✅ Позитивный: PUT с текстом
-- ✅ Негативный: PUT с пустым телом
-- ✅ Негативный: PUT с JSON вместо текста
-- ✅ Негативный: PUT со специальными символами
-
-### PATCH-запросы (/patch)
-- ✅ Позитивный: PATCH с текстом
-- ✅ Негативный: PATCH с JSON вместо текста
-- ✅ Негативный: PATCH с пустым телом
-
-### DELETE-запросы (/delete)
-- ✅ Позитивный: DELETE с текстом
-- ✅ Негативный: DELETE с JSON вместо текста
-- ✅ Негативный: DELETE с пустым телом
+- [Исходный код](src/test/java/api/)
+- [Настройки сборки](build.gradle.kts)
+- Gradle Wrapper 8.14.4 включён в репозиторий.
 
 ## Запуск
 
+Для воспроизводимого запуска используется JDK 21; там, где задан sourceCompatibility, сохранена Java 11. Нужен интернет для первой загрузки Gradle и зависимостей.
+
 ```bash
-# Все тесты
-./gradlew clean test
+git clone --branch Lesson_8 --single-branch https://github.com/rootofevi1/Aston_AQA_50.git
+cd Aston_AQA_50
+./gradlew test
+```
 
-# Конкретный класс
-./gradlew test --tests GetTests
+В Windows PowerShell замените `./gradlew` на `.\gradlew.bat`. Команды `java -cp` одинаковы для обеих систем.
 
-# Отчет
-# build/reports/tests/test/index.html
+Выбор одного класса: `./gradlew test --tests 'api.tests.GetTests'`.
+
+HTML-отчёт Gradle: `build/reports/tests/test/index.html`. XML: `build/test-results/test/`.
+
+## Особенности проверок
+
+Postman Echo возвращает переданный запрос. Пустые параметры и альтернативные форматы тела проверяют варианты входных данных, а не обязательно ошибки HTTP: ряд таких тестов ожидает `200`. Запуск зависит от доступности `postman-echo.com`. Имена некоторых тестов называют эти случаи «негативными»; это описание уточняет фактический смысл.
+
+## Автор
+
+Александр · Junior QA/AQA Engineer · [Email](mailto:a@samoylov-qa.ru) · [Telegram](https://t.me/samoylov_av)
