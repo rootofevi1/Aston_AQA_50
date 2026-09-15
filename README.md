@@ -4,7 +4,7 @@ Java inheritance and interfaces demonstrated with animals and geometric shapes.
 
 Две модели: животные (Animal, Cat, Dog, Bowl) и геометрические фигуры (Shape, Circle, Rectangle, Triangle). Наследование, полиморфизм и расчёт площади/периметра.
 
-Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
+Часть учебного портфолио, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
 ## Стек и структура
 
