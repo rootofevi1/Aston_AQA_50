@@ -4,7 +4,7 @@ Java basics: expressions, conditions, loops and arrays.
 
 Выражения, условия, циклы и массивы. Примеры собраны в Main.
 
-Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
+Часть учебного портфолио, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
 ## Стек и структура
 
