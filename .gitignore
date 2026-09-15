@@ -1,4 +1,12 @@
 .gradle
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+local.properties
+allure-results/
+allure-report/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
