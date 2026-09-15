@@ -1,5 +1,3 @@
-import org.gradle.internal.tools.api.impl.JavaApiMemberWriter.adapter
-
 plugins {
     id("java")
     id("io.qameta.allure") version "2.11.2"

@@ -156,8 +156,8 @@ public class MtsOnlinePaymentTest {
     @Story("Кнопка 'Продолжить'")
     void testContinueButtonForCommunicationServices() {
         paymentPage.selectCommunicationServices();
-        paymentPage.enterPhone("PHONE_NUMBER");
-        paymentPage.enterAmount("AMOUNT");
+        paymentPage.enterPhone(PHONE_NUMBER);
+        paymentPage.enterAmount(AMOUNT);
         paymentPage.clickContinue();
 
         assertTrue(
