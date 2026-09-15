@@ -135,8 +135,8 @@ public class MtsOnlinePaymentTest {
     @DisplayName("Проверка работы кнопки 'Продолжить' для услуги связи")
     void testContinueButtonForCommunicationServices() {
         paymentPage.selectCommunicationServices();
-        paymentPage.enterPhone("PHONE_NUMBER");
-        paymentPage.enterAmount("AMOUNT");
+        paymentPage.enterPhone(PHONE_NUMBER);
+        paymentPage.enterAmount(AMOUNT);
         paymentPage.clickContinue();
 
         assertTrue(
