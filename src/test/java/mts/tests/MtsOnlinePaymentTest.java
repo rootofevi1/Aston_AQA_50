@@ -117,9 +117,9 @@ public class MtsOnlinePaymentTest {
 
         paymentPage.selectCommunicationServices();
 
-        paymentPage.enterPhone("PHONE_NUMBER");
+        paymentPage.enterPhone(PHONE_NUMBER);
 
-        paymentPage.enterAmount("AMOUNT");
+        paymentPage.enterAmount(AMOUNT);
 
         paymentPage.clickContinue();
 

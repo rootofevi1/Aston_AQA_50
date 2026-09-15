@@ -95,18 +95,8 @@ public class OnlinePaymentPage extends BasePage {
     public boolean isPaymentPageOpened() {
 
         try {
-            wait.until(ExpectedConditions.or(
-
-                    ExpectedConditions.urlContains("pay"),
-
-                    ExpectedConditions.presenceOfElementLocated(
-                            By.cssSelector("iframe")
-                    ),
-
-                    ExpectedConditions.presenceOfElementLocated(
-                            By.cssSelector("form")
-                    )
-
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector("iframe[src*='checkout.bepaid.by']")
             ));
 
             return true;
