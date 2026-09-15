@@ -4,7 +4,7 @@ Object-oriented Java examples with products and a park model.
 
 Модели товара и парка аттракционов: конструкторы, поля, методы вывода и внутренний класс Attraction.
 
-Часть учебного портфолио Александра, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
+Часть учебного портфолио, подготовленного во время обучения AQA в Aston. [Все работы курса](https://github.com/rootofevi1/Aston_AQA_50#readme).
 
 ## Стек и структура
 
